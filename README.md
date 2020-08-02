@@ -2,7 +2,7 @@
 
 ## Steps to setup project locally
  
-### Linux
+### For Linux OS:
 
 * npm install
 * npm run clientinstall
@@ -15,3 +15,17 @@
 * Run knex migrate:latest
 * Run knex seed:run
 * npm run dev
+
+### 1st mentoring & evaluation round:
+ 
+ * Fetched the sentinel-5p data 
+ * Performed data mining and data preprocessing
+ * Plotted Hotspots district-wise using spatial auto-correlation
+ 
+### 2nd mentoring round:
+ 
+ * Analysed the movement of Hotspots
+ * Plotted backward trajectory 
+ 
+
+
