@@ -1,5 +1,7 @@
 # NM394_FreshlyBuilt
 
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=100px width=350px>
+
 ## Steps to setup project locally
  
 ### For Linux OS:
