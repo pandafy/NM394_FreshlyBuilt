@@ -1,15 +1,17 @@
 # Team: FreshlyBuilt 
 # PSID: NM394
-# PS : To develop AI/ML-based software to identify/analyze: 
-#      1. Location of hot spots. 
-#      2. The long-term occurrence of hot spots and changes.
+**PS : To develop AI/ML-based software to identify/analyze:**
+      **1. Location of hot spots.
+       2. The long-term occurrence of hot spots and changes.**
 
 <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=200px width=550px>
 
 We have developed ATHARVA which is a user friendly Web application that can be used by common people to gain the knowledge about hotspots of India and their changes.
 
-# ATHARVA : Autoregressive Trend analysis & Hypercritical Air pollution Ranging & Visualisation Application 
-Features in our application Atharva: 
+## ATHARVA : Autoregressive Trend analysis & Hypercritical Air pollution Ranging & Visualisation Application
+
+**Features in our application Atharva:**
+
 *District-wise plotting Heatmap for each pollutant analyzation and visualization
 *Coordinate basis Hotspots and Coldspots detection
 *Graphical Analysis of concentration of pollutants at each hotspot 
