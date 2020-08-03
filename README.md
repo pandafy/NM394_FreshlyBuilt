@@ -83,8 +83,13 @@ npm run dev
 
 
 ### Change in HotSpots:
-<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20centers.jpeg height=400px width=400px>
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20centers.jpeg height=450px width=450px>
 
 
 ### Changing/Moving HotSpots:
-<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20Shifts.jpeg height=400px width=400px>
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20Shifts.jpeg height=450px width=450px>
+
+## HotSpot Trajectories:
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/WhatsApp%20Image%202020-08-03%20at%2015.19.49.jpeg
+ height=550px width=550px>
+
