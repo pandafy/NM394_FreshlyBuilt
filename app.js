@@ -3,7 +3,7 @@ const app=express();
 const knex = require('./knex/knex.js');
 const knexPostgis = require('knex-postgis');
 const cors=require("cors");
-const rewind = require("@mapbox/geojson-rewind");
+const path=require("path");
 
 
 
@@ -45,6 +45,9 @@ app.get("/api",async(req,res)=>{
         month:month,
         year:year
       })
+
+
+      console.log(sql2)
          
     var geojson={
         "type":"FeatureCollection",
@@ -71,21 +74,60 @@ app.get("/api",async(req,res)=>{
     }
 })
 
+app.get("/api/hotspot",async(req,res)=>{
+    try{
+        const latestDefaults={
+            "week":1,
+            "month":"january",
+            "year":2020,
+            "type":"NO2"
+        }
+        if((req.query.week&&isNaN(parseInt(req.query.week)))||(req.query.year&&isNaN(parseInt(req.query.year)))){
+            throw "Invalid Request";
+    
+        }
+        const parsedweek=parseInt(req.query.week);
+        const parsedyear=parseInt(req.query.year);
+        
+        const week=parsedweek||latestDefaults["week"]
+        var month=req.query.month||latestDefaults["month"];
+        month=month.toLowerCase();
+        const year=parsedyear||latestDefaults["year"];
+        const sql2=await knex('HOTSPOT').select("lat","long").where({
+            week:week,
+            month:month,
+            year:year
+          })
+        res.send(sql2)
+        }catch(e){
+            res.status(400).send(e);
+            console.log(e);
+        }
+})
+
 app.get("/api/distinfo",async(req,res)=>{
     try{
-     const state=req.query.state.toLowerCase();
-     const district=req.query.district.toLowerCase();
-     const result=await knex.select().from("GEODATA2").where({
-         state:state,
-         district:district
+     const lat=req.query.lat;
+     const long=req.query.long;
+     const result=await knex.select().from("HOTSPOT").where({
+         lat:lat,
+         long:long
      })
+     console.log(result.length);
      res.status(200).send(result);
     }catch(e){
         console.log(e);
     }
 })
 
-const PORT=process.env.PORT||3000;
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static('client/build'))
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+    })
+}
+
+const PORT=process.env.PORT||5000;
 app.listen(PORT,process.env.IP,()=>{
 console.log(`server is running on port ${PORT}`)
 })

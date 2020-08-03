@@ -9,7 +9,8 @@ import {
     LAYER_LOADING,
     SET_FILTER,
     LOAD_DIST_INFO,
-    SET_TYPE
+    SET_TYPE,
+    GET_HOTSPOT
 } from "../types"
 
 const MapState=(props)=>{
@@ -24,6 +25,7 @@ const MapState=(props)=>{
         year:2020,
         pollutant:"CO"
       },
+      hotspot:[],
       distInfo:[]
     }
     const alertContext=useContext(AlertContext);
@@ -42,10 +44,8 @@ const MapState=(props)=>{
       dispatch({type:SET_FILTER,payload:f});
     }
 
-    const loadDistInfo=async(district,state)=>{
-      const response=await axios.get(`http://localhost:3000/api/distinfo?state=${state}&district=${district}`)
-      console.log(district,state);
-      console.log(response.data)
+    const loadDistInfo=async(lat,long)=>{
+      const response=await axios.get(`/api/distinfo?lat=${lat}&long=${long}`)
       dispatch({type:LOAD_DIST_INFO,payload:response.data});
     }
 
@@ -56,7 +56,7 @@ const MapState=(props)=>{
     const loadGeodata=async(week,month,year,type)=>{
       setLayerLoading(true);
       setLoading(true);
-      const response=await axios.get('http://localhost:3000/api?week='+week+"&month="+month+"&year="+year+"&type="+type)
+      const response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type)
       const data=response.data;
       console.log(response);
       if(data==="Invalid Request"){
@@ -67,6 +67,7 @@ const MapState=(props)=>{
       alertContext.setalert("No Data Found","danger");
       setLoading(false);
       dispatch({type:LOAD_GEODATA,payload:data})
+      console.log(state.geodata)
       }
         else{
        dispatch({type:LOAD_GEODATA,payload:data})
@@ -76,6 +77,12 @@ const MapState=(props)=>{
       }
 
     }
+    const get_hotspot=async()=>{
+      const response=await axios.get("/api/hotspot");
+      dispatch({type:GET_HOTSPOT,payload:response.data})
+      console.log(state.distInfo)
+      setLayerLoading(false)
+    }
 
     return (<MapContext.Provider value={{
         loading:state.loading,
@@ -84,12 +91,14 @@ const MapState=(props)=>{
         filter:state.filter,
         distInfo:state.distInfo,
         type:state.type,
+        hotspot:state.hotspot,
         setLayerLoading,
         setLoading,
         loadGeodata,
         setFilter,
         loadDistInfo,
-        setType
+        setType,
+        get_hotspot
 			}}>
             {props.children}
 	</MapContext.Provider>)

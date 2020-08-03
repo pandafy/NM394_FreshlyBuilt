@@ -4,6 +4,18 @@
   font-weight: bold;
 }
 
+.change-layer{
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 1em;
+  border: none;
+  opacity: 0.7;
+  border-radius: 3px;
+}
+ .change-layer:hover{
+   background-color: #545353ba;
+ }
 .side-drawer { 
   height: 89.35vh;
   background:black;

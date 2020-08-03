@@ -17,6 +17,7 @@ const Scale=({stop})=>{
          </div>)
          })
         }
+        <div style={{color:"white",marginTop:"1%"}}>Units: * 10^20 molec/m2</div>
         </div>
     )
 }
