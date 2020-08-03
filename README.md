@@ -31,8 +31,8 @@ We have developed ATHARVA which is a user friendly Web application that can be u
 
 1. **NPM install**
 ```
-* npm install
-* npm run clientinstall
+npm install
+npm run clientinstall
 ```
 2. **Install Postgres & Postgis using apt**
 
