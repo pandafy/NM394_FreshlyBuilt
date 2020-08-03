@@ -1,6 +1,7 @@
-# NM394_FreshlyBuilt
+# Team: FreshlyBuilt 
+# PSID: NM394
 
-<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=100px width=350px>
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=200px width=550px>
 
 ## Steps to setup project locally
  
