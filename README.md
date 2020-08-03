@@ -37,7 +37,7 @@ npm run dev
 ### 2nd mentoring round:
  
  * Analysed the movement of Hotspots
- * Plotted backward trajectory 
- 
+ * Plotted backward trajectory by using metrelogical data set 
+ * Depicted the shifts in hotspot over a period of time .
 
 
