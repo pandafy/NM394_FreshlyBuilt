@@ -4,11 +4,13 @@
       **1. Location of hot spots.
        2. The long-term occurrence of hot spots and changes.**
 
-<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=200px width=550px>
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/logo2.svg height=130px width=450px>
+
+## ATHARVA : Autoregressive Trend analysis & Hypercritical Air pollution Ranging & Visualisation Application
 
 We have developed ATHARVA which is a user friendly Web application that can be used by common people to gain the knowledge about hotspots of India and their changes.
 
-## ATHARVA : Autoregressive Trend analysis & Hypercritical Air pollution Ranging & Visualisation Application
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/webapp%20SS.png height=550px width=950px>
 
 **Features in our application Atharva:**
 
