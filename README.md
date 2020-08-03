@@ -89,6 +89,7 @@ npm run dev
 
 <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/UI%202.png height=450px width=850px>
 
+[![ATHARVA NM394_FreshlyBuilt](https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Thumbnail.JPG)](https://www.youtube.com/watch?v=2SwHh8aCRgE "ATHARVA")
 
 ### January, 2020 Clusters & Cluster centers:
 <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Jan%201.jpeg height=400px width=400px>        <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Jan%20centers.jpeg height=400px width=400px>
