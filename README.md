@@ -12,13 +12,13 @@ We have developed ATHARVA which is a user friendly Web application that can be u
 
 **Features in our application Atharva:**
 
-*District-wise plotting Heatmap for each pollutant analyzation and visualization
-*Coordinate basis Hotspots and Coldspots detection
-*Graphical Analysis of concentration of pollutants at each hotspot 
-*Filters available for querying various pollutants on the map for any week.
-*Plotting shifts in HotSpots over a specific period of time
-*Analyzing those shifts by plotting backward trajectories and verifying it using meteorological data.
-*Two modes for visualization: Dark mode & Daylight
+* District-wise plotting Heatmap for each pollutant analyzation and visualization
+* Coordinate basis Hotspots and Coldspots detection
+* Graphical Analysis of concentration of pollutants at each hotspot 
+* Filters available for querying various pollutants on the map for any week.
+* Plotting shifts in HotSpots over a specific period of time
+* Analyzing those shifts by plotting backward trajectories and verifying it using meteorological data.
+* Two modes for visualization: Dark mode & Daylight
 
 
 
@@ -62,7 +62,7 @@ npm run dev
  
  
  
- ##Tools and Technologies used 
+ ## Tools and Technologies used 
  
  * Sentinel-5P Pre-Operations Data Hub (data source )
  * HARP (for fetching Sentinel5p data)
