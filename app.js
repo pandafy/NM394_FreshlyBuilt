@@ -45,9 +45,6 @@ app.get("/api",async(req,res)=>{
         month:month,
         year:year
       })
-
-
-      console.log(sql2)
          
     var geojson={
         "type":"FeatureCollection",
