@@ -18,9 +18,9 @@ exports.seed = function (knex) {
           const tobeadded = {
             "state":geodata[i]["statename"].toLowerCase(),
             "district": geodata[i]["distname"]==="DATA NOT AVAILABLE"?"leh":geodata[i]["distname"].toLowerCase(),
-            "CO": geodata[i]["max_tropospheric_NO2_column_number_density"]?geodata[i]["max_tropospheric_NO2_column_number_density"]/Math.pow(10,20):0,
+            "NO2": geodata[i]["max_tropospheric_NO2_column_number_density"]?geodata[i]["max_tropospheric_NO2_column_number_density"]/Math.pow(10,20):0,
             // "CO":index+1,
-            "NO2":0,
+            "CO":0,
             "SO2":0,
             "O3":0,
             "MIN_CO":0,

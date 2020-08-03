@@ -24,7 +24,7 @@ app.get("/api",async(req,res)=>{
         "week":1,
         "month":"january",
         "year":2020,
-        "type":"CO"
+        "type":"NO2"
     }
     if((req.query.week&&isNaN(parseInt(req.query.week)))||(req.query.year&&isNaN(parseInt(req.query.year)))){
         throw "Invalid Request";

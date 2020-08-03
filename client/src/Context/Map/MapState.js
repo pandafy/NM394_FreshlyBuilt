@@ -10,15 +10,17 @@ import {
     SET_FILTER,
     LOAD_DIST_INFO,
     SET_TYPE,
-    GET_HOTSPOT
+    GET_HOTSPOT,
+    DIST_INFO_LOADING
 } from "../types"
 
 const MapState=(props)=>{
     const initialState={
       loading:false,
       geodata:{},
-      type:"CO",
-      layerLoading:false,
+      type:"NO2",
+      layerLoading:true,
+      distInfoLoading:false,
       filter:{
         week:1,
         month:"January",
@@ -47,6 +49,7 @@ const MapState=(props)=>{
     const loadDistInfo=async(lat,long)=>{
       const response=await axios.get(`/api/distinfo?lat=${lat}&long=${long}`)
       dispatch({type:LOAD_DIST_INFO,payload:response.data});
+      set_distInfoLoading(false);
     }
 
     const setType=(t)=>{
@@ -55,6 +58,7 @@ const MapState=(props)=>{
 
     const loadGeodata=async(week,month,year,type)=>{
       setLayerLoading(true);
+      console.log("hgfsdhgfg")
       setLoading(true);
       const response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type)
       const data=response.data;
@@ -71,6 +75,7 @@ const MapState=(props)=>{
       }
         else{
        dispatch({type:LOAD_GEODATA,payload:data})
+       setLayerLoading(false)
        setTimeout(()=>{
         setLoading(false);
        },3000)
@@ -81,7 +86,9 @@ const MapState=(props)=>{
       const response=await axios.get("/api/hotspot");
       dispatch({type:GET_HOTSPOT,payload:response.data})
       console.log(state.distInfo)
-      setLayerLoading(false)
+    }
+    const set_distInfoLoading=(v)=>{
+      dispatch({type:DIST_INFO_LOADING,payload:v})
     }
 
     return (<MapContext.Provider value={{
@@ -92,6 +99,8 @@ const MapState=(props)=>{
         distInfo:state.distInfo,
         type:state.type,
         hotspot:state.hotspot,
+        distInfoLoading:state.distInfoLoading,
+        set_distInfoLoading,
         setLayerLoading,
         setLoading,
         loadGeodata,

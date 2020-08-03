@@ -2,6 +2,7 @@ import React, { useState, Fragment, useRef, useContext, useEffect } from 'react'
 import MapGL, { Source, Layer, FullscreenControl, NavigationControl, Marker } from 'react-map-gl';
 import Toggle from 'react-toggle'
 import Spinner from "./Layout/spinner"
+
 import Geocoder from 'react-map-gl-geocoder';
 import MapContext from "../Context/Map/mapContext"
 import Alert from "./Layout/alert.js"
@@ -34,11 +35,11 @@ const MyMap = ({ setDrawerClass ,layer}) => {
       // [5, "#ed2d33"]
     ],
     NO2: [
-      [0.01, "yellow"],
-      [0.02, "#ed8a2d"],
-      [0.03, "#baed2d"],
-      [0.04, "#2d70ed"],
-      [0.05, "#ed2d33"]
+      [1, "yellow"],
+      [2, "#ed8a2d"],
+      [3, "#baed2d"],
+      // [4, "#2d70ed"],
+      [4, "#ed2d33"]
     ],
     SO2: [
       [0.01, "yellow"],
@@ -59,7 +60,9 @@ const MyMap = ({ setDrawerClass ,layer}) => {
   const [mapStyle, setmapStyle] = useState(false);
 
   const mapContext = useContext(MapContext);
-  const { loading, setLoading, layerLoading, get_hotspot,hotspot,loadGeodata, geodata, type, filter, loadDistInfo } = mapContext;
+  const { loading, setLoading, layerLoading, 
+    get_hotspot,hotspot,loadGeodata, geodata, type,
+    set_distInfoLoading, filter, loadDistInfo } = mapContext;
 
   const Light = () => {
     return (
@@ -79,7 +82,6 @@ const MyMap = ({ setDrawerClass ,layer}) => {
       ...geocoderDefaultOverrides
     })
   }
-
 
   useEffect(() => {
     loadGeodata("", "", "", "");
@@ -111,14 +113,15 @@ const MyMap = ({ setDrawerClass ,layer}) => {
         mapboxApiAccessToken="pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
       >
         <Alert />
-        <Alert />
 
         <Geocoder
           mapRef={mapRef}
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
         />
-        {!layerLoading && layer==="PolygonLayer" && (<Source id="conc-density" type="geojson" data={geodata}>
+        {console.log(layerLoading)};
+        {!layerLoading && (
+        <Source id="conc-density" type="geojson" data={geodata}>
           <Layer
             id="conc-density"
             type="fill"
@@ -146,10 +149,8 @@ const MyMap = ({ setDrawerClass ,layer}) => {
 
         {!layerLoading && layer==="hotspot"?hotspot.map((h,index)=>{
           return <div key={index} onClick={()=>{
-            console.log(h.lat);
-            console.log(h.long);
+            set_distInfoLoading(true)
             setDrawerClass("side-drawer open");
-            console.log("hello")
             loadDistInfo(h.lat,h.long)
 
           }}><Marker  latitude={h.lat} longitude={h.long} offsetLeft={-20} offsetTop={-10}>

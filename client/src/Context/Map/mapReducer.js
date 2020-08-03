@@ -1,4 +1,4 @@
-import {MAP_LOADING,LAYER_LOADING, LOAD_GEODATA,SET_FILTER, LOAD_DIST_INFO, SET_TYPE, GET_HOTSPOT} from '../types'
+import {MAP_LOADING,LAYER_LOADING, LOAD_GEODATA,SET_FILTER, LOAD_DIST_INFO, SET_TYPE, GET_HOTSPOT, DIST_INFO_LOADING} from '../types'
 
 export default (state,action)=>{
   switch(action.type){
@@ -8,7 +8,6 @@ export default (state,action)=>{
               loading:action.payload
           }
       case GET_HOTSPOT:
-        console.log("yes")
         return{
           ...state,
           hotspot:action.payload,
@@ -18,11 +17,16 @@ export default (state,action)=>{
           ...state,
           layerLoading:action.payload
         }
+      case DIST_INFO_LOADING:{
+        return {
+          ...state,
+          distInfoLoading:action.payload
+        }
+      }
       case LOAD_GEODATA:
         return{
           ...state,
           geodata:action.payload,
-          layerLoading:false
         }
       case SET_FILTER:
         return{
