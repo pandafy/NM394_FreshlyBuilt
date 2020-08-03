@@ -7,17 +7,26 @@
  
 ### For Linux OS:
 
+1. **NPM install**
+```
 * npm install
 * npm run clientinstall
-* Install postgresql using apt
-* Install postgis using apt
+```
+2. **Install Postgres & Postgis using apt**
+
 * Create new user and database
 * Switch postgresql cli mode then, grant superuser privileges to your newly created user. (ALTER USER your_username WITH SUPERUSER;)
-* Start postgres by running: systemctl start postgresql
-* Replace user, password,database with the user,password,database  (name) created above.
-* Run knex migrate:latest
-* Run knex seed:run
-* npm run dev
+* Start postgres by running: `systemctl start postgresql`
+* Replace `user`, `password`, `database` with the `user`, `password`, `database`  (name) created above.
+
+3. **Run knex migrate:latest**
+
+```
+knex seed:run
+npm run dev
+```
+
+## Updates for each mentoring & evaluation round
 
 ### 1st mentoring & evaluation round:
  
