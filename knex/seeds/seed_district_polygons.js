@@ -31,7 +31,7 @@ exports.seed = function(knex) {
         const tobeadded={
           "state":districtProperties["statename"].toLowerCase(),
           "district":districtProperties["distname"]==="DATA NOT AVAILABLE"?"leh":districtProperties["distname"].toLowerCase(),
-          "geometry":geomFromGeoJSON
+          "geometry":st.setSRID(geomFromGeoJSON,4326)
         }
         data.push(tobeadded);
       }
