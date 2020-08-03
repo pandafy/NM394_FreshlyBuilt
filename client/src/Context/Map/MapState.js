@@ -61,7 +61,7 @@ const MapState=(props)=>{
       console.log("hgfsdhgfg")
       setLoading(true);
       const response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type)
-      const data=response.data;
+      const data=JSON.parse(response.data);
       console.log(response);
       if(data==="Invalid Request"){
       alertContext.setalert(data,"danger");
