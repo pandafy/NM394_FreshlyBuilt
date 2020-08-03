@@ -10,7 +10,7 @@
 
 We have developed ATHARVA which is a user friendly Web application that can be used by common people to gain the knowledge about hotspots of India and their changes.
 
-<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/webapp%20SS.png height=550px width=950px>
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/webapp%20SS.png height=450px width=850px>
 
 **Features in our application Atharva:**
 
@@ -75,3 +75,16 @@ npm run dev
  * NCEP/NCAR (data source for metreological data needed for trajectories)
  * React,Node.js,Express.js,Postgis,PostgreSQL (for our Web Application )
  
+### January, 2020 Clusters & Cluster centers:
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Jan%201.jpeg height=400px width=400px>        <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Jan%20centers.jpeg height=400px width=400px>
+
+### February, 2020 Clusters & Cluster centers:
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Feb%201.jpeg height=400px width=400px>        <img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Feb%20centers.jpeg height=400px width=400px>
+
+
+### Change in HotSpots:
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20centers.jpeg height=400px width=400px>
+
+
+### Changing/Moving HotSpots:
+<img src=https://github.com/pandafy/NM394_FreshlyBuilt/blob/master/Images/Final%20Shifts.jpeg height=400px width=400px>
