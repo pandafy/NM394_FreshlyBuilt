@@ -45,9 +45,9 @@ npm run clientinstall
 2. **Install Postgres & Postgis using apt**
 
 * Create new user and database
-* Switch postgresql cli mode then, grant superuser privileges to your newly created user. (ALTER USER your_username WITH SUPERUSER;)
+* Switch to postgresql cli mode then, grant superuser privileges to your newly created user. (ALTER USER your_username WITH SUPERUSER;)
 * Start postgres by running: `systemctl start postgresql`
-* Replace `user`, `password`, `database` with the `user`, `password`, `database`  (name) created above.
+* Replace `user`, `password`, `database` with the `user`, `password`, `database`  (name) created above in knexfile.js.
 
 3. **Run knex migrate:latest**
 
