@@ -4,7 +4,7 @@ exports.up = function(knex) {
     .raw('CREATE EXTENSION IF NOT EXISTS postgis')
     .raw('CREATE EXTENSION IF NOT EXISTS postgis_topology')
     .raw('CREATE EXTENSION IF NOT EXISTS fuzzystrmatch')
-    .raw('CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder')
+    // .raw('CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder')
     .raw(`SET SCHEMA 'public'`)
     .raw('CREATE EXTENSION IF NOT EXISTS pg_trgm')
     .createTable('District_Polygons', function(table) {

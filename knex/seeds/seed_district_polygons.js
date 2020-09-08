@@ -1,4 +1,4 @@
-const geojson=require("/home/bhoomik/Desktop/pyshp-demo.json");
+var geojson=require("/home/bhoomik/Desktop/polygons2.json");
 const rewind = require("@mapbox/geojson-rewind");
 
 
@@ -12,7 +12,7 @@ exports.seed = function(knex) {
       let data=[];
       const districtData=geojson["features"]
       console.log(districtData.length);
-      for(var i=0;i<districtData.length;i++){
+          for(var i=0;i<districtData.length;i++){
         const districtProperties = districtData[i]["properties"];
     
         var geom={ };

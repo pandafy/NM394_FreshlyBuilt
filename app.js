@@ -1,11 +1,15 @@
 const express=require("express");
+const compression = require('compression')
 const app=express();
 const knex = require('./knex/knex.js');
 const knexPostgis = require('knex-postgis');
 const cors=require("cors");
 const path=require("path");
+var fs = require('fs');
 
 
+
+app.use(compression())
 
 const st=knexPostgis(knex)
 
@@ -115,6 +119,15 @@ app.get("/api/distinfo",async(req,res)=>{
     }catch(e){
         console.log(e);
     }
+})
+app.get("/api/random",async(req,res)=>{
+    const sql=await knex.select('state','district',st.asGeoJSON('geometry')).table('District_Polygons');
+    fs.writeFile("/home/bhoomik/Desktop/polygons.json", JSON.stringify(sql), function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+    res.send({});
 })
 
 if(process.env.NODE_ENV==='production'){
