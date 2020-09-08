@@ -63,7 +63,7 @@ app.get("/api",async(req,res)=>{
         }
         geojson.features.push(tobeadded)
     }
-
+    console.log(Buffer.from(JSON.stringify(geojson)).length);
     res.send(geojson)
     }catch(e){
         res.status(400).send(e);
