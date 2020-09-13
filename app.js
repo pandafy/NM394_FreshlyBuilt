@@ -22,9 +22,6 @@ app.use(function (req, res, next) {
     next();
   });
 
-app.get("/",(req,res)=>{
-res.send({});
-})
 
 app.get("/api",async(req,res)=>{
     try{
