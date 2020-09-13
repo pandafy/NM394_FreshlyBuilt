@@ -13,6 +13,10 @@ import {
     GET_HOTSPOT,
     DIST_INFO_LOADING
 } from "../types"
+var geobuf=require("geobuf");
+var Pbf=require("pbf");
+var Buffer = require('buffer/').Buffer
+
 
 const MapState=(props)=>{
     const initialState={
@@ -60,18 +64,21 @@ const MapState=(props)=>{
       setLayerLoading(true);
       console.log("hgfsdhgfg")
       setLoading(true);
-      const response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type)
-      const data=response.data;
+      var response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type, {
+        responseType: 'arraybuffer'
+      })
       console.log(response);
+      var data =response.data;
+      data = geobuf.decode(new Pbf(data));
+      console.log(data)
       if(data==="Invalid Request"){
       alertContext.setalert(data,"danger");
       setLoading(false);
       dispatch({type:LOAD_GEODATA,payload:{}})
-      }else if(response.data.features.length==0){
+      }else if(data.features.length==0){
       alertContext.setalert("No Data Found","danger");
       setLoading(false);
       dispatch({type:LOAD_GEODATA,payload:data})
-      console.log(state.geodata)
       }
         else{
        dispatch({type:LOAD_GEODATA,payload:data})

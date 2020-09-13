@@ -6,7 +6,8 @@ const knexPostgis = require('knex-postgis');
 const cors=require("cors");
 const path=require("path");
 var fs = require('fs');
-
+var geobuf=require("geobuf");
+var Pbf = require('pbf');
 
 
 app.use(compression())
@@ -21,6 +22,9 @@ app.use(function (req, res, next) {
     next();
   });
 
+app.get("/",(req,res)=>{
+res.send({});
+})
 
 app.get("/api",async(req,res)=>{
     try{
@@ -67,8 +71,10 @@ app.get("/api",async(req,res)=>{
         }
         geojson.features.push(tobeadded)
     }
-    console.log(Buffer.from(JSON.stringify(geojson)).length);
-    res.send(geojson)
+
+    var packed=geobuf.encode(geojson, new Pbf());
+    packed=Buffer.from(packed);
+    res.send(packed);
     }catch(e){
         res.status(400).send(e);
         console.log(e);

@@ -8,7 +8,7 @@ const Filter = ({ leftdrawerclass, setLeftDrawerClass, setisOpen }) => {
         week:1,
         month:"January",
         year:2020,
-        pollutant:"CO"
+        pollutant:"NO2"
     })
 
     const {loadGeodata,setType}=mapContext;
@@ -29,7 +29,7 @@ const Filter = ({ leftdrawerclass, setLeftDrawerClass, setisOpen }) => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const week = [1, 2, 3, 4, 5];
     const year = [2020];
-    const pollutants = ["CO", "SO2", "NO2", "O3"]
+    const pollutants = ["NO2", "SO2", "CO", "O3"]
 
     return (
         <div className={leftdrawerclass}>
@@ -81,6 +81,7 @@ const Filter = ({ leftdrawerclass, setLeftDrawerClass, setisOpen }) => {
                                 <select name="pollutant" value={filter.pollutant} onChange={onFilterChange}>
                 {pollutants.map(p => <option key={p} value={p}>{p}</option>)}
                                 </select>
+                                {console.log(pollutants)}
                                 </div>
                             </label>
                         </div>
