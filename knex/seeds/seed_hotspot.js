@@ -6,7 +6,6 @@ var glob = require( 'glob' )
     files.push(f);
   });
 
-  console.log(files.length)
 
 // const hotspot=require("/home/bhoomik/Downloads/csvjson2.json")
 exports.seed = function(knex) {
@@ -29,7 +28,6 @@ exports.seed = function(knex) {
           data.push(tobeadded);
         }    
       })
-      console.log(data.length)
        return knex('HOTSPOT').insert(data);
     });
 };

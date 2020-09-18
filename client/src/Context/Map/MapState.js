@@ -11,7 +11,8 @@ import {
     LOAD_DIST_INFO,
     SET_TYPE,
     GET_HOTSPOT,
-    DIST_INFO_LOADING
+    DIST_INFO_LOADING,
+    SET_CURRLOC
 } from "../types"
 var geobuf=require("geobuf");
 var Pbf=require("pbf");
@@ -32,7 +33,13 @@ const MapState=(props)=>{
         pollutant:"CO"
       },
       hotspot:[],
-      distInfo:[]
+      distInfo:[],
+      curr_loc:{
+        state:"",
+        district:"",
+        lat:0,
+        long:0
+      }
     }
     const alertContext=useContext(AlertContext);
 
@@ -53,6 +60,7 @@ const MapState=(props)=>{
     const loadDistInfo=async(lat,long)=>{
       const response=await axios.get(`/api/distinfo?lat=${lat}&long=${long}`)
       dispatch({type:LOAD_DIST_INFO,payload:response.data});
+      set_currloc(lat,long);
       set_distInfoLoading(false);
     }
 
@@ -60,17 +68,34 @@ const MapState=(props)=>{
     dispatch({type:SET_TYPE,payload:t});
     }
 
+    const set_currloc=async(lat,long)=>{
+        const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + long + "," + lat + ".json?types=district&access_token=pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
+        const res = await axios.get(url);
+        var data={}
+        if(res.data.features.length==0){
+          data.district="";
+          data.state="";
+          data.lat=lat;
+          data.long=long;
+        }else{
+        data={
+          district: res.data.features[0].text,
+          state: res.data.features[0]["context"][0].text,
+          lat:lat,
+          long:long
+        }
+      }
+        dispatch({type:SET_CURRLOC,payload:data})
+    }
+
     const loadGeodata=async(week,month,year,type)=>{
       setLayerLoading(true);
-      console.log("hgfsdhgfg")
       setLoading(true);
       var response=await axios.get('/api?week='+week+"&month="+month+"&year="+year+"&type="+type, {
         responseType: 'arraybuffer'
       })
-      console.log(response);
       var data =response.data;
       data = geobuf.decode(new Pbf(data));
-      console.log(data)
       if(data==="Invalid Request"){
       alertContext.setalert(data,"danger");
       setLoading(false);
@@ -92,7 +117,6 @@ const MapState=(props)=>{
     const get_hotspot=async()=>{
       const response=await axios.get("/api/hotspot");
       dispatch({type:GET_HOTSPOT,payload:response.data})
-      console.log(state.distInfo)
     }
     const set_distInfoLoading=(v)=>{
       dispatch({type:DIST_INFO_LOADING,payload:v})
@@ -107,6 +131,7 @@ const MapState=(props)=>{
         type:state.type,
         hotspot:state.hotspot,
         distInfoLoading:state.distInfoLoading,
+        curr_loc:state.curr_loc,
         set_distInfoLoading,
         setLayerLoading,
         setLoading,
@@ -114,7 +139,8 @@ const MapState=(props)=>{
         setFilter,
         loadDistInfo,
         setType,
-        get_hotspot
+        get_hotspot,
+        set_currloc
 			}}>
             {props.children}
 	</MapContext.Provider>)

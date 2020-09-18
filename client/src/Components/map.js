@@ -7,7 +7,6 @@ import Geocoder from 'react-map-gl-geocoder';
 import MapContext from "../Context/Map/mapContext"
 import Alert from "./Layout/alert.js"
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-import axios from "axios";
 import Scale from "./Scale"
 import marker from "../assets//marker.png"
 
@@ -15,7 +14,7 @@ import marker from "../assets//marker.png"
 
 
 
-const MyMap = ({ setDrawerClass ,layer}) => {
+const MyMap = ({ setDrawerClass ,layer, setViewportMap2}) => {
   const [viewport, setViewport] = useState({
     latitude: 28.7041,
     longitude: 77.1025,
@@ -88,17 +87,6 @@ const MyMap = ({ setDrawerClass ,layer}) => {
     get_hotspot();
   }, []);
   return (
-    // onClick={async (evt) => {
-    //   console.log(setDrawerClass)
-    //   setDrawerClass("side-drawer open");
-    //   console.log(evt.lngLat);
-    //   const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + evt.lngLat[0] + "," + evt.lngLat[1] + ".json?types=district&access_token=pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
-    //   const res = await axios.get(url);
-    //   const district = res.data.features[0].text;
-    //   const state = res.data.features[0]["context"][0].text;
-    //   loadDistInfo(district, state);
-    // }
-
     <div style={{ height: "100%", width: "100%" }}>
       {loading && (<div className="loader">
         <Spinner />
@@ -119,7 +107,6 @@ const MyMap = ({ setDrawerClass ,layer}) => {
           onViewportChange={handleGeocoderViewportChange}
           mapboxApiAccessToken="pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
         />
-        {console.log(layerLoading)};
         {!layerLoading && (
         <Source id="conc-density" type="geojson" data={geodata}>
           <Layer

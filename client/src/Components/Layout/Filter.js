@@ -81,7 +81,6 @@ const Filter = ({ leftdrawerclass, setLeftDrawerClass, setisOpen }) => {
                                 <select name="pollutant" value={filter.pollutant} onChange={onFilterChange}>
                 {pollutants.map(p => <option key={p} value={p}>{p}</option>)}
                                 </select>
-                                {console.log(pollutants)}
                                 </div>
                             </label>
                         </div>

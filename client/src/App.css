@@ -23,7 +23,7 @@
   right: 0;
   width: 40%;
   padding: 1em;
-  z-index: 10000;
+  z-index: 200;
   box-shadow: 1px 0px 7px rgba(0,0,0,0.5); 
   transform: translateX(100%);
   cursor: default;
@@ -163,7 +163,7 @@ input[type="text"]{
   width: 50%;
   position: absolute;
   top:92%;
-  z-index: 1000;
+  z-index: 300;
   color: #333;
   margin-right: 1%;
   right: 0;
@@ -219,7 +219,7 @@ input[type="text"]{
    position: absolute;
    left: 42%;
     top: 45%;
-    z-index: 1000;
+    z-index: 200;
 }
 @media (max-width: 700px) {
  .loader{

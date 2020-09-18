@@ -11,7 +11,6 @@ exports.seed = function(knex) {
       const st = knexPostgis(knex);
       let data=[];
       const districtData=geojson["features"]
-      console.log(districtData.length);
           for(var i=0;i<districtData.length;i++){
         const districtProperties = districtData[i]["properties"];
     
@@ -35,7 +34,6 @@ exports.seed = function(knex) {
         }
         data.push(tobeadded);
       }
-      console.log(data)
       return knex('District_Polygons').insert(data);
     }catch(e){
       console.log(e)

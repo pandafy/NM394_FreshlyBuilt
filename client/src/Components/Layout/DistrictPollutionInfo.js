@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import axios from "axios"
-import Spinner from "../Layout/spinner"
 import MapGL, { Source, Layer } from 'react-map-gl';
 import MapContext from "../../Context/Map/mapContext"
 import CanvasJSReact from "../../assets/canvasjs.react"
@@ -16,10 +14,27 @@ const images = ['myImage', image];
 
 
 
-const DistrictPollutionInfo = ({ drawerclass, setDrawerClass, shift_geojson, traj }) => {
+const DistrictPollutionInfo = ({ drawerclass, setDrawerClass, shift_geojson, traj,viewportMap2,setViewportMap2 }) => {
   const mapContext = useContext(MapContext);
-  const { distInfo, distInfoLoading } = mapContext;
+  const { distInfo, distInfoLoading,curr_loc} = mapContext;
+  const [viewport, setViewport] = useState({
+    latitude: 28.7041,
+    longitude: 77.1025,
+    zoom: 5,
+    bearing: 0,
+    pitch: 0
+  });  
 
+  useEffect(()=>{
+    if(distInfo.length!=0){
+     setViewport({
+       ...viewport,
+       latitude:curr_loc.lat,
+       longitude:curr_loc.long,
+       zoom:7
+     })
+    }
+  },[curr_loc])
   var options_NO2 = {
     theme: "dark2",
     animationEnabled: true,
@@ -90,49 +105,13 @@ const DistrictPollutionInfo = ({ drawerclass, setDrawerClass, shift_geojson, tra
     }
   }
   options_NO2["data"] = data_NO2;
-  const [viewport, setViewport] = useState({
-    latitude: 28.7041,
-    longitude: 77.1025,
-    zoom: 5,
-    bearing: 0,
-    pitch: 0
-  });
-
-  const [location, setLocation] = useState({
-    state: "",
-    district: ""
-  })
-  useEffect(() => {
-    async function myfunc() {
-      if (distInfo.length != 0) {
-        const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + distInfo.lat + "," + distInfo.long + ".json?types=district&access_token=pk.eyJ1IjoidXJ2YXNoaTA3IiwiYSI6ImNqeWVnczJvOTAxMHAzY3FpMzR1YXNyangifQ.90CUMwZJnAtdjZAyQwc5sw"
-        const res = await axios.get(url);
-        setLocation({
-          district: res.data.features[0].text,
-          state: res.data.features[0]["context"][0].text
-        })
-      }
-      //   const district = res.data.features[0].text;
-      //   const state = res.data.features[0]["context"][0].text;
-    }
-    myfunc();
-  }, [])
-
-// console.log(distInfo)
-// if(!distInfoLoading){
-//   setViewport({
-//     ...viewport,
-//     latitude: distInfo[0]["lat"],
-//     longitude: distInfo[0]["long"],
-//   })
-// }
-
+ 
   return (
     <div className={drawerclass}>
       {distInfoLoading ? <img style={{ width: '50px', height: "50px", margin: 'auto', display: 'block' }} src={loader} /> :
         (<div className="info-data">
           <span className="info-heading">
-            <span>{location.state + " ," + location.district}</span>
+            <span>{curr_loc.district + " ," + curr_loc.state}</span>
             <span className="info-close">
               <i onClick={
                 () => {
@@ -142,9 +121,6 @@ const DistrictPollutionInfo = ({ drawerclass, setDrawerClass, shift_geojson, tra
             </span>
           </span>
           <div className="content">
-            {/* <div className="plot">
-      <CanvasJSChart  options = {options_CO}/>
-      </div> */}
             <div className="plot">
               <CanvasJSChart options={options_NO2} />
             </div>

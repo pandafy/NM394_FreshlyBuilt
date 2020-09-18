@@ -11,6 +11,7 @@ const Home = () => {
     const [leftdrawerclass, setLeftDrawerClass] = useState('side-drawer-left');
     const [drawerclass, setDrawerClass] = useState('side-drawer');
     const [layer,setLayer]=useState("PolygonLayer");
+    
     var shift_geojson = {
         "type": "FeatureCollection",
         "features": []
@@ -42,7 +43,7 @@ const Home = () => {
             </div>
             <DistrictPollutionInfo drawerclass={drawerclass} setDrawerClass={setDrawerClass} shift_geojson={shift_geojson} traj={traj}/>
             <Filter leftdrawerclass={leftdrawerclass} setLeftDrawerClass={setLeftDrawerClass} setisOpen={setisOpen} />
-            <div style={{position:'absolute',top:"85%",zIndex:"200",left:"30px"}}>
+            <div style={{position:'absolute',top:"85%",zIndex:"150",left:"30px"}}>
                 <button onClick={()=>{
                 setLayer("hotspot")
             }} className="change-layer">Hotspots</button>

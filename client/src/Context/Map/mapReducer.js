@@ -1,4 +1,4 @@
-import {MAP_LOADING,LAYER_LOADING, LOAD_GEODATA,SET_FILTER, LOAD_DIST_INFO, SET_TYPE, GET_HOTSPOT, DIST_INFO_LOADING} from '../types'
+import {MAP_LOADING,LAYER_LOADING, LOAD_GEODATA,SET_FILTER, LOAD_DIST_INFO, SET_TYPE, GET_HOTSPOT, DIST_INFO_LOADING,SET_CURRLOC} from '../types'
 
 export default (state,action)=>{
   switch(action.type){
@@ -43,8 +43,12 @@ export default (state,action)=>{
           ...state,
           distInfo:action.payload
         }
+      case SET_CURRLOC:
+        return{
+          ...state,
+          curr_loc:action.payload
+        }
       default:
-       console.log("default")
         return state;
   }
 }
